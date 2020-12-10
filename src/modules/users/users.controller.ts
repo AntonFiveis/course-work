@@ -5,9 +5,9 @@ import { UsersDto, UsersUpdates } from './dto/users.dto';
 @Controller('users')
 export class UsersController {
   constructor(private usersService:UsersService){}
-  @Get('/:id')
-  async getUserById(@Query('id') userID:number){
-    return this.usersService.getUserById(userID)
+  @Get('/:email')
+  async getUserById(@Query('email') email:string){
+    return this.usersService.getUserByEmail(email)
   }
   @Post()
   async createUser(@Body() usersDto:UsersDto){

@@ -5,7 +5,6 @@ export class UsersDto{
   patronymic: string;
   phone: string;
   password:string;
-  salt:string;
 }
 export class UsersUpdates{
   firstName?:string;
