@@ -12,6 +12,13 @@ export class RealEstatesDto {
 }
 
 export class RealEstatesUpdates{
-  priceInDollars?: number;
-  selled?: boolean;
+  realEstateID: number;
+  title: string;
+  priceInDollars: number;
+  district: string;
+  address: string;
+  floorsCount: number;
+  roomsCount: number;
+  house: boolean;
+  isCurrentlyAvailable: boolean;
 }

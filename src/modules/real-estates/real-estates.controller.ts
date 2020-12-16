@@ -18,9 +18,10 @@ export class RealEstatesController {
   async putsSellsUp(@Body() realEstatesDto: RealEstatesDto){
     return this.realEstatesService.postRealEstate(realEstatesDto)
   }
-  @Patch('/:id')
-  async updateRealEstate(@Query('id') realEstateID:number, @Body() updates: RealEstatesUpdates){
-    return this.realEstatesService.updateRealEstate(realEstateID,updates)
+
+  @Patch()
+  async updateRealEstate(@Body() allUpdates: RealEstatesUpdates[]){
+    this.realEstatesService.updateRealEstate(allUpdates)
   }
 
   @Delete('/:id')

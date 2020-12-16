@@ -64,7 +64,7 @@ export class PgService {
         }, '')
         
         const request = `UPDATE "${tableName}" SET ${sets.slice(0, sets.length - 2)} WHERE ${where}` + (returning ? `Returning "${returning}"` : '')
-
+        
         try {
             return this.pool.query(request)
         } catch (error) {

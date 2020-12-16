@@ -16,8 +16,10 @@ export class RealEstatesService {
     const res = await this.pgService.useQuery(`SELECT * FROM "AdminRealEstatesView"`)
     return res.rows
   }
-  async updateRealEstate(realEstateID:number,updates:RealEstatesUpdates){
-    return this.pgService.useQuery('')
+  async updateRealEstate(updates:RealEstatesUpdates[]){
+    const promises = updates.map(({realEstateID, title, priceInDollars, district, address, floorsCount, roomsCount, house, isCurrentlyAvailable}) => 
+      this.pgService.update({ tableName: 'RealEstates', updates: { title, priceInDollars, district, address, floorsCount, roomsCount, house, isCurrentlyAvailable }, where: '"realEstateID"=' + realEstateID }))
+    Promise.all(promises).catch(error => { throw new Error(error) })
   }
   async deleteRealEstate(realEstateID:number){
     return this.pgService.useQuery('')
