@@ -7,7 +7,8 @@ export class RealEstatesDto {
   address: string;
   floorsCount: number;
   roomsCount: number;
-  house: string;
+  house: boolean;
+  isCurrentlyAvailable: boolean;
 }
 
 export class RealEstatesUpdates{

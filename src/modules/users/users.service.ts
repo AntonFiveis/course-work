@@ -7,12 +7,13 @@ import * as bcrypt from 'bcrypt'
 export class UsersService {
   constructor(private pgService:PgService) {}
   async getUserByEmail(email:string){
-    return this.pgService.useQuery(`SELECT * FROM "Users" WHERE "email"=${email}`)
+    const res = await this.pgService.useQuery(`SELECT * FROM "Users" WHERE "email"='${email}'`)
+    return res.rows[0]
   }
   async createUser({email,firstName,lastName,patronymic,phone,password}:UsersDto){
     const salt = await bcrypt.genSalt()
     const genPassword = await bcrypt.hash(password,salt)
-    return this.pgService.useQuery(`SELECT CreateUser(${email},${firstName},${lastName},${patronymic},${phone},${genPassword},${salt})`)
+    return this.pgService.useQuery(`SELECT "CreateUser" ('${email}','${firstName}','${lastName}','${patronymic}','${phone}','${genPassword}','${salt}')`)
   }
   async updateUser(userID:number,updates:UsersUpdates){
     return this.pgService.useQuery('')

@@ -10,6 +10,10 @@ export class RealEstatesController {
   async getRealEstateById(@Query('id') realEstateID: number){
     return this.realEstatesService.getRealEstateById(realEstateID)
   }
+  @Get()
+  async getAllRealEstates(){
+    return await this.realEstatesService.getAllRealEstates()
+  }
   @Post()
   async putsSellsUp(@Body() realEstatesDto: RealEstatesDto){
     return this.realEstatesService.postRealEstate(realEstatesDto)
