@@ -1,5 +1,4 @@
-// @ts-ignore
-import { Body, Controller, Delete, Get, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { RealEstatesService } from './real-estates.service';
 import { RealEstatesDto, RealEstatesUpdates } from './dto/real-estates.dto';
 
@@ -26,7 +25,7 @@ export class RealEstatesController {
   }
 
   @Delete('/:id')
-  async deleteRealEstate(@Query('id') realEstateID:number){
+  async deleteRealEstate(@Param('id') realEstateID:number){
     return this.realEstatesService.deleteRealEstate(realEstateID)
   }
 }

@@ -1,4 +1,4 @@
-// @ts-ignore
+
 import { Injectable } from '@nestjs/common';
 import { PgService } from '../pg/pg.service';
 import { RealEstatesDto, RealEstatesUpdates } from './dto/real-estates.dto';
@@ -19,12 +19,14 @@ export class RealEstatesService {
     return res.rows
   }
   async updateRealEstate(updates:RealEstatesUpdates[]){
-    const promises = updates.map(({realEstateID, title, priceInDollars, district, address, floorsCount, roomsCount, house, isCurrentlyAvailable}) => 
-      this.pgService.update({ tableName: 'RealEstates', updates: { title, priceInDollars, district, address, floorsCount, roomsCount, house, isCurrentlyAvailable }, where: '"realEstateID"=' + realEstateID }))
+    const promises = updates.map(realEstate => 
+      this.pgService.update({ tableName: 'RealEstates', updates: { ...realEstate, realEstateID: undefined }, where: '"realEstateID"=' + realEstate.realEstateID }))
     Promise.all(promises).catch(error => { throw new Error(error) })
   }
   async deleteRealEstate(realEstateID:number){
-    return this.pgService.delete({tableName:this.tableName,where:`"realEstateID"=${realEstateID}`,cascade:true})
+
+    await this.pgService.delete({tableName:this.tableName,where:`"realEstateID"=${realEstateID}`,cascade:true})
+
   }
 
 

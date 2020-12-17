@@ -59,6 +59,7 @@ export class PgService {
 
     async update<T>({tableName, updates, where, returning} : UpdateParams<T>): Promise<QueryResult> {
         const sets = Object.keys(updates).reduce((currentValue, key) => {
+            if(updates[key] === undefined) return currentValue;
             const newValue = typeof updates[key] === 'number' || typeof updates[key] === 'boolean' ? updates[key] : `'${updates[key]}'`
             return `${currentValue}"${key}" = ${newValue}, `
         }, '')
