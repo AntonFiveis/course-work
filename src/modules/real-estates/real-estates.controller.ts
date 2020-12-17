@@ -1,3 +1,4 @@
+// @ts-ignore
 import { Body, Controller, Delete, Get, Patch, Post, Query } from '@nestjs/common';
 import { RealEstatesService } from './real-estates.service';
 import { RealEstatesDto, RealEstatesUpdates } from './dto/real-estates.dto';
@@ -21,7 +22,7 @@ export class RealEstatesController {
 
   @Patch()
   async updateRealEstate(@Body() allUpdates: RealEstatesUpdates[]){
-    this.realEstatesService.updateRealEstate(allUpdates)
+    return this.realEstatesService.updateRealEstate(allUpdates)
   }
 
   @Delete('/:id')

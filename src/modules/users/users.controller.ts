@@ -1,10 +1,16 @@
-import { Body, Controller, Delete, Get, Patch, Post, Query } from '@nestjs/common';
+
 import { UsersService } from './users.service';
 import { UsersDto, UsersUpdates } from './dto/users.dto';
+import { Body, Controller, Delete, Get, Patch, Post, Query } from '@nestjs/common';
+import { CredentialsDto } from './dto/credentials.dto';
 
 @Controller('users')
 export class UsersController {
   constructor(private usersService:UsersService){}
+  @Post()
+  async signIn(@Body() {email,password}:CredentialsDto){
+    return this.usersService.signIn(email,password)
+  }
   @Get('/:email')
   async getUserById(@Query('email') email:string){
     return this.usersService.getUserByEmail(email)
