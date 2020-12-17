@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Patch, Query } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Patch, Query } from '@nestjs/common';
 import { SellersService } from './sellers.service';
 
 @Controller('sellers')
@@ -20,5 +20,9 @@ export class SellersController {
     rating = rating>5? 5:rating;
     rating = rating<0? 0: rating;
     return this.sellersService.addRating(sellerID,rating)
+  }
+  @Delete('/:id')
+  async unregisterAsSeller(@Param('id') sellerID){
+    return this.sellersService.unregisterAsSeller(sellerID)
   }
 }
