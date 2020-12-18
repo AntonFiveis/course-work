@@ -5,10 +5,12 @@ import { UsersModule } from './modules/users/users.module';
 import { RealEstatesModule } from './modules/real-estates/real-estates.module';
 import { SellersModule } from './modules/sellers/sellers.module';
 import { RieltorsModule } from './modules/rieltors/rieltors.module';
+import { CustomersModule } from './modules/customers/customers.module';
+import { InspectionTimeModule } from './modules/inspection-time/inspection-time.module';
 
 
 @Module({
-  imports: [PgModule, ContractsModule, UsersModule, RealEstatesModule, SellersModule, RieltorsModule],
+  imports: [PgModule, ContractsModule, UsersModule, RealEstatesModule, SellersModule, RieltorsModule, CustomersModule, InspectionTimeModule],
   controllers: [],
   providers: [],
 })
