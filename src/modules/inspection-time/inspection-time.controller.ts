@@ -19,8 +19,8 @@ export class InspectionTimeController {
     return this.inspectionTimeService.deleteInspectionTime(inspectionTimeID)
   }
   @Post()
-  async appointTime(@Query('realEstateID') realEstateID:number, @Query('rieltorID') rieltorID:number, @Query('date') date:string){
-    return this.inspectionTimeService.appointTime(realEstateID,rieltorID,date);
+  async appointTime(@Query('realEstateID') realEstateID:number, @Query('realtorID') realtorID:number, @Query('date') date:string){
+    return this.inspectionTimeService.appointTime(realEstateID,realtorID,date);
   }
 
 }

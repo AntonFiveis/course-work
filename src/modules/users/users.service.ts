@@ -12,8 +12,10 @@ export class UsersService {
     return res.rows[0]
   }
   async createUser({email,firstName,lastName,patronymic,phone,password}:UsersDto){
+
     const salt = await bcrypt.genSalt()
     const genPassword = await bcrypt.hash(password,salt)
+    console.log(genPassword, salt)
     return this.pgService.useQuery(`SELECT "CreateUser" ('${email}','${firstName}','${lastName}','${patronymic}','${phone}','${genPassword}','${salt}')`)
   }
   async updateUser(userID:number,updates:UsersUpdates){

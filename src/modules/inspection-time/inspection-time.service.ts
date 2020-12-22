@@ -9,8 +9,8 @@ export class InspectionTimeService {
     const res =await this.pgService.useQuery(`SELECT * FROM "GetInspectionTimesBetween"(${realEstateID}, ${beginDate},${endDate})`)
     return res.rows
   }
-  async appointTime(realEstateID:number, rieltorID:number,date: string){
-    await this.pgService.useQuery(`SELECT "AppointTime"(${realEstateID},${rieltorID},${date})`)
+  async appointTime(realEstateID:number, realtorID:number,date: string){
+    await this.pgService.useQuery(`SELECT "AppointTime"(${realEstateID},${realtorID},${date})`)
   }
   async deleteInspectionTime(inspectionTimeID){
     await this.pgService.delete({tableName:this.tableName, where:`"id"=${inspectionTimeID}`})
