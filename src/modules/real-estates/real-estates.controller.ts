@@ -6,10 +6,26 @@ import { RealEstatesDto, RealEstatesUpdates } from './dto/real-estates.dto';
 export class RealEstatesController {
   constructor(private realEstatesService:RealEstatesService) {}
 
-  @Get('/:id')
-  async getRealEstateById(@Query('id') realEstateID: number){
-    return this.realEstatesService.getRealEstateById(realEstateID)
+  // @Get('/:id')
+  // async getRealEstateById(@Query('id') realEstateID: number){
+  //   return this.realEstatesService.getRealEstateById(realEstateID)
+  // }
+
+  @Get('/title')
+  async getRealEstatesByTitle(@Query('search') title: string) {
+    return await this.realEstatesService.getRealEstatesByTitle(title)
   }
+
+  @Get('/district')
+  async getRealEstatesByDistrict(@Query('search') district: string) {
+    return await this.realEstatesService.getRealEstatesByDistrict(district)
+  }
+
+  @Get('/price')
+  async getRealEstatesByPrice(@Query('start') start: number, @Query('end') end: number) {
+    return await this.realEstatesService.getRealEstatesByPrice(start, end)
+  }
+
   @Get()
   async getAllRealEstates(){
     return await this.realEstatesService.getAllRealEstates()

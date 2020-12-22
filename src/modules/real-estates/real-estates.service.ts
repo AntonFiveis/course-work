@@ -29,5 +29,19 @@ export class RealEstatesService {
 
   }
 
+  async getRealEstatesByTitle(title: string){
+    const res = await this.pgService.useQuery(`SELECT * FROM "AdminRealEstatesView" WHERE "title" ILIKE '%${title}%'`)
+    return res.rows
+  }
+
+  async getRealEstatesByDistrict(district: string) {
+    const res = await this.pgService.useQuery(`SELECT * FROM "AdminRealEstatesView" WHERE "district" ILIKE '${district}%'`)
+    return res.rows
+  }
+
+  async getRealEstatesByPrice(start: number, end: number) {
+    const res = await this.pgService.useQuery(`SELECT * FROM "AdminRealEstatesView" WHERE "priceInDollars" BETWEEN ${start} AND ${end}`)
+    return res.rows
+  }
 
 }
