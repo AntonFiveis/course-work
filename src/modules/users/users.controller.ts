@@ -7,7 +7,7 @@ import { CredentialsDto } from './dto/credentials.dto';
 @Controller('users')
 export class UsersController {
   constructor(private usersService:UsersService){}
-  @Post()
+  @Post('/signIn')
   async signIn(@Body() {email,password}:CredentialsDto){
     return this.usersService.signIn(email,password)
   }
@@ -17,6 +17,7 @@ export class UsersController {
   }
   @Post()
   async createUser(@Body() usersDto:UsersDto){
+    console.log(usersDto)
     return this.usersService.createUser(usersDto)
   }
   @Delete('/:id')
